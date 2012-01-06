@@ -99,7 +99,7 @@ points(x,p,pch=16,cex=2,col="dark red")
 #~~~~~~~~weibull distribution~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # f(x) = (a/b) (x/b)^(a-1) exp(- (x/b)^a)
 curve(dweibull(x, scale=2.5, shape=1.5),from=0, to=15, main="Weibull distribution")
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~central limiting theorem~~~~~~~~~~~~~~~~~~~~~~#
 hist(x=rnorm(500,mean=100,sd=10),prob=TRUE,ylim=c(0,0.04))
 curve(dnorm(x,mean=100,sd=10),70,130,add=TRUE,lwd=2,col="red")
 
@@ -127,13 +127,16 @@ for (i in 1:500) {
 	xbar[i]=mean(sample(x,size=n,replace=TRUE,prob=p))
 }
 hist(xbar,prob=TRUE,breaks=12)
-
-
+#~~~~~~~~~~~~~~~~ks.test~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 ?ks.test
 x <- rnorm(50)
 y <- runif(30)
 # Do x and y come from the same distribution?
 ks.test(x, y)
+
+
+
+
 
 
 
