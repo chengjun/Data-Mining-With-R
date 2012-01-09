@@ -1,0 +1,31 @@
+X = read.table("D:/conferences/all of statistics study group/nerve.txt")
+X = as.numeric(X[,1])
+
+#-----plot the PDF and CDF------#
+
+t = as.data.frame(table(X))
+pdf = cbind( as.numeric(as.vector(t[,1])), t[,2]/sum(t[,2]) )
+cdf = cbind( pdf[,1], cumsum(t[,2])/sum(t[,2]) )
+plot( pdf , xlab = "interval time of nerve firing", ylab = "Probability", main = "PDF", pch = 20)
+plot(	cdf , xlab = "interval time of nerve firing", ylab = "Probability", main = "CDF", pch = 20)
+
+#-----Use bootstrap methond to calculate the se of the median------#
+
+T = median(X)
+Tboot = c(1:1000)
+for (i in 1:1000){
+	Xstar = sample( X, 1000, replace = T)
+	Tboot[i] = median(Xstar)
+	}
+se = sd(Tboot)
+
+#-----Use bootstrap methond to calculate the se of the skewness------#
+
+S = ( sum((X - mean(X))^3)/length(X) )/ sd(X)^3
+Sboot = c(1:1000)
+for (i in 1:1000){
+	Xstar = sample( X, 1000, replace = T)
+	Sboot[i] = ( sum((Xstar - mean(Xstar))^3)/length(Xstar) )/ sd(Xstar)^3
+	}
+se = sd(Sboot)
+Normal = c(S-1.96*se, S+1.96*se)
