@@ -8,7 +8,14 @@ x$x<-sort(x$x)
 x$p<-1/1000
 x$cp<-cumsum(x$p)
 par(mfrow=c(3,1))
-hist(x$x, xlab="x", main = paste("Histogram of" , "x"))
-plot(x$x, x$p, xlab="x", ylab="PDF", main="Figure 1")
-plot(x$x, x$cp, xlab="x", ylab="CDF", main="Figure 2")
+
+hist(x$x,
+   probability = TRUE, # In stead of frequency
+   breaks = "FD",      # For more breaks than the default
+   col = "darkslategray4", border = "seashell3",
+   xlab="x", main = paste("Histogram of" , "x, The real PDF"))
+lines(density(x$x - 0.5),   # Add the kernel density estimate (-.5 fix for the bins)
+   col = "firebrick2", lwd = 3)
+plot(x$x, x$p, xlab="x", ylab="PDF", main="Figure of Fake PDF")
+plot(x$x, x$cp, xlab="x", ylab="CDF", main="CDF")
 

@@ -12,6 +12,7 @@ fx <- function(x) {
 }
 length(fx(x))
 data<-cbind(x, fx(x))
+names(data)<-c("x", "fx")
 plot(data)
 hist(data[,2])
 barplot(data[,2], col=c(1,2))
@@ -23,6 +24,7 @@ fx <- ifelse(x > -0.326 & x <0.625, 0.632,
 fx2<-convolve(data[,2], data[,2])
 subdata<-subset(data, is.na(data[,2])==FALSE)
 plot(convolve(subdata[,1],subdata[,1]))
+write.csv(subdata, "d:/github/Data-Mining-With-R/Understaning Statitics/piecewise.csv")
 #
 
 
