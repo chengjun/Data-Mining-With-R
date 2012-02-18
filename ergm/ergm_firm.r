@@ -1,4 +1,5 @@
-
+# goodness of fit for ergm
+# 20120208
 
 #~~~~~~~~~~~~~~~~~~~~~load data~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 dat<-read.table("d:/download/firmb.txt", sep="		", header=T)
@@ -44,3 +45,5 @@ plot(m1.gof)
 ## runing 100 simulaton to plot the gof, very time-consuming.
 firmbgof <- gof(m1~degree)
 plot(firmbgof)
+
+
